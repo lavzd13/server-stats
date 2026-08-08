@@ -12,7 +12,7 @@ free -m | grep "Mem:" | awk -F' ' '{printf "You are using %.2f%% of your memory\
 
 # Disk usage script
 echo -e "\e[1m----------------------Disk usage:----------------------\e[0m"
-df | awk -F ' ' '{SIZE+=$2};{USED+=$3};{AVAILABLE+=$4}; END{printf "You are using %.2f%% of your disk\nSize: %.2fG\nUsed: %.2fG\nAvailable: %.2fG\n", (USED/SIZE)*100, SIZE/(1024*1024), USED/(1024*1024), AVAILABLE/(1024*1024)}'
+df / | awk -F ' ' '{SIZE+=$2};{USED+=$3};{AVAILABLE+=$4}; END{printf "You are using %.2f%% of your disk\nSize: %.2fG\nUsed: %.2fG\nAvailable: %.2fG\n", (USED/SIZE)*100, SIZE/(1024*1024), USED/(1024*1024), AVAILABLE/(1024*1024)}'
 
 # Top 5 processes by CPU usage
 echo "$top_output" | awk 'BEGIN{block=0} /^top -/{block++} block==2' | tail -n +8 | LC_NUMERIC=C awk 'BEGIN { printf "\033[1m----------------------Top 5 processes by CPU usage:----------------------\033[0m\n   Usage  PID  Command\n"; start=0 } {gsub(",", ".", $9); start++ ;printf "%d. %.1f%% %s %s\n", start, $9, $1, $12; if (start==5) exit}'
