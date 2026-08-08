@@ -1,2 +1,4 @@
 # server-stats.sh
-project for devops roadmap
+Project for DevOps roadmap on roadmap.sh
+
+https://roadmap.sh/projects/server-stats
